@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halil ARSLAN Barkod V1.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet"> <!-- Google Fonts Montserrat -->
+    <style>
+        /* Sayfa boyutunu ve içeriği ortalamak için CSS */
+        body {
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+
+            /* Hardal sarısı ve kahverengi geçiş arka planı */
+            background: linear-gradient(to bottom right, #D4A017, #6F4F1F); /* Hardal sarısı ve kahverengi */
+            background-attachment: fixed; /* Arka planın sabitlenmesi */
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid #fff; /* Beyaz kenarlık */
+            background-color: rgba(255, 255, 255, 0.8); /* Hafif şeffaf beyaz arka plan */
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6F4F1F; /* Kahverengi buton rengi */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+        }
+
+        button:hover {
+            background-color: #5e4315; /* Buton hover rengi */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Yazılara hafif gölge */
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+        }
+
+        /* Logo ayarları */
+        #logo {
+            margin-bottom: 20px;
+        }
+
+        /* Alt metin için stil */
+        .footer {
+            margin-top: 30px;
+            font-size: 16px;
+            color: white;
+            text-align: left;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Hafif şeffaf siyah arka plan */
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+        }
+
+        /* Butonların sağdan sola kaymasını sağlamak için CSS */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            animation: slideIn 2s ease-out forwards;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #6F4F1F; /* Kahverengi buton rengi */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Hafif gölge efekti */
+            font-family: 'Montserrat', sans-serif; /* Montserrat fontu */
+        }
+
+        .button-container button:hover {
+            background-color: #5e4315; /* Buton hover rengi */
+        }
+
+        /* Butonların sağdan sola kayma animasyonu */
+        @keyframes slideIn {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Şifre giriş formu için stil */
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #D4A017, #6F4F1F);
+        }
+
+        .password-container input {
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .password-container button {
+            width: 250px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="passwordPage" class="password-container">
+        <h1>Sayfaya Erişim İçin Şifre Girin</h1>
+        <input type="password" id="passwordInput" placeholder="Şifrenizi girin">
+        <button onclick="checkPassword()">Giriş Yap</button>
+    </div>
+
+    <div id="mainPage" style="display: none;">
+        <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/52px-United_Parcel_Service_logo_2014.svg.png" alt="UPS Logo">
+
+        <!-- Butonlar hemen burada logonun altına ekleniyor -->
+        <div class="button-container">
+            <a href="https://opf.ups.com.tr/Data/Query" target="_blank"><button>OPF Portal</button></a>
+            <a href="https://opf.ups.com.tr/controltower/Login/Index" target="_blank"><button>ControlTower</button></a>
+            <a href="https://tundraapps-tsl.ups.com/tsl" target="_blank"><button>UPS TSL</button></a>
+            <a href="https://tundraapps-tpd.ups.com/tpd" target="_blank"><button>UPS TPD</button></a>
+        </div>
+
+        <h1>UPS Takip Numarasını Yazın.</h1>
+        <input type="text" id="codeInput" maxlength="18" placeholder="Takip numarasını yaz mübarek.">
+        <button onclick="redirectToURL()">Yazdır</button>
+        <h1>Samsun İlkadım SS Halil ARSLAN tarafından geliştirilmiştir. 👍</h1>
+        <h1>Sadece anakap çıktısı vermektedir, diğer kaplar için çalışıyoruz. 😊</h1>
+
+        <!-- Alt metin için stil -->
+        <div class="footer">
+            <ul>
+                <li> Teslim edilmiş gönderinin barkodu yazdırılamaz.</li>
+                <li> Yurtdışı gönderi barkodları yazdırılamaz.</li>
+                <li> OSP Portal'a giriş yapmadan barkod yazdırılamaz.</li>
+                <li> Bu site, genellikle şubelere ait alımların gönderilere exception girmeden barkod çıkarmasına kolaylık sağlamak amacı ile hazırlanmıştır.</li>
+                <li> Alırım bi "Allah Razı Olsun". 🤲</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("passwordInput").value;
+            if (password === "ups12345") {
+                document.getElementById("passwordPage").style.display = "none";
+                document.getElementById("mainPage").style.display = "block";
+            } else {
+                alert("Yanlış şifre! Tekrar deneyin.");
+            }
+        }
+
+        function redirectToURL() {
+            var code = document.getElementById("codeInput").value;
+            if (code.length === 18) {
+                var url = `https://opf.ups.com.tr/Barcode?Waybill=${code}%20%20|0`;
+                window.open(url, '_blank');  // Sayfayı yeni sekmede açma
+            } else {
+                alert("Lütfen 18 haneli takip no girin. Daha sonra alttaki Yazdır butonuna basın :)");
+            }
+        }
+    </script>
+</body>
+</html>
